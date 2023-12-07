@@ -32,7 +32,7 @@ create_table("my_table", [("id", "INTEGER"), ("name", "TEXT"), ("age", "INTEGER"
  - Добавление записи
 add_record("my_table", {"id": 1, "name": "John", "age": 25})
 
- - Проверка существования записи
+ - Проверка существования записи 
 exists = exists_in_table("my_table", ("id", 1))
 print(exists)  # Выводит True
 
