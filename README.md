@@ -26,19 +26,23 @@ import sqlite3
 connection = sqlite3.connect("BeaverTG.db")
 cursor = connection.cursor()
 
-# Создание таблицы
+ - Создание таблицы
 create_table("my_table", [("id", "INTEGER"), ("name", "TEXT"), ("age", "INTEGER")])
 
-# Добавление записи
+ - Добавление записи
 add_record("my_table", {"id": 1, "name": "John", "age": 25})
 
-# Проверка существования записи
+ - Проверка существования записи
 exists = exists_in_table("my_table", ("id", 1))
 print(exists)  # Выводит True
 
-# Получение значения столбца
+ - Получение значения столбца
 name = get_column_value_by_name("my_table", "name", ("id", 1))
 print(name)  # Выводит "John"
+
+ - Обновление значения столбца
+update_column_value("my_table", "age", 30, ("id", 1))
+Пожалуйста, обратите внимание, что перед использованием этих функций необходимо установить библиотеку SQLite3.
 
 # SQLtools
 This file provides convenient functions for working with the SQLite database in Python. Below is a description of each function:
@@ -92,7 +96,3 @@ update_column_value("my_table", "age", 30, ("id", 1))
 ```
 
 Please note that before using these functions, you need to install the SQLite3 library.
-
-# Обновление значения столбца
-update_column_value("my_table", "age", 30, ("id", 1))
-Пожалуйста, обратите внимание, что перед использованием этих функций необходимо установить библиотеку SQLite3.
