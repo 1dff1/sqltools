@@ -1,4 +1,4 @@
-# SQL
+# SQLtools RU
 Данный файл предоставляет удобные функции для работы с базой данных SQLite в Python. Ниже приведено описание каждой функции:
 
 create_table(table_name, columns)
@@ -40,7 +40,7 @@ print(exists)  # Выводит True
 name = get_column_value_by_name("my_table", "name", ("id", 1))
 print(name)  # Выводит "John"
 
-
+# SQLtools
 This file provides convenient functions for working with the SQLite database in Python. Below is a description of each function:
 
 **create_table(table_name, columns)**
