@@ -6,11 +6,11 @@ cursor = connection.cursor()
 
 def create_table(table_name: str, columns: tuple) -> None:
     """
-    Создает таблицу с указанным именем и столбцами.
-
-    table_name: Имя таблицы\n
-    columns: Список кортежей, где каждый кортеж содержит (имя_столбца,
-    тип_столбца)
+    Creates a table with the specified name and columns.
+    
+    table_name: Table name\n
+    columns: A list of tuples, where each tuple contains (column name,
+    column type)
     """
     columns_str = ", ".join([f"{col[0]} {col[1]}" for col in columns])
     cursor.execute(f"CREATE TABLE IF NOT EXISTS {table_name} ({columns_str})")
@@ -19,11 +19,11 @@ def create_table(table_name: str, columns: tuple) -> None:
 
 def add_record(table_name: str, values: dict) -> None:
     """
-    Добавляет запись в указанную таблицу.
-
-    table_name: Имя таблицы\n
-    values: Словарь, где ключи - это имена столбцов, а значения -
-    соответствующие значения
+    Adds an entry to the specified table.
+    
+    table_name: Table name\n
+    values: A dictionary where the keys are the column names and the values are
+    the corresponding values
     """
     columns = ", ".join(values.keys())
     placeholders = ", ".join(["?" for _ in values.keys()])
@@ -34,13 +34,13 @@ def add_record(table_name: str, values: dict) -> None:
 
 def exists_in_table(table_name: str, condition: tuple) -> bool:
     """
-    Проверяет, существует ли запись в указанной таблице на основе заданного
-    условия.
-
-    table_name: Имя таблицы\n
-    condition: Кортеж, где первый элемент - это имя столбца, а второй
-    элемент - значение для проверки\n
-    True, если запись существует, иначе False
+    Checks whether an entry exists in the specified table based on the specified
+    conditions.
+    
+    table_name: Table name\n
+    condition: A tuple where the first element is the column name and the second one is
+    the element is the value to check \n
+    True if the record exists, otherwise False
     """
     cursor.execute(f"SELECT 1 FROM {table_name} WHERE {condition[0]} = ?",
                    (condition[1],))
@@ -51,13 +51,13 @@ def exists_in_table(table_name: str, condition: tuple) -> bool:
 def get_column_value_by_name(table_name: str, column_to_get: str,
                              condition: tuple) -> None:
     """
-    Получает значение определенного столбца в таблице на основе условия.
-
-    table_name: Имя таблицы \n
-    column_to_get: Имя столбца для извлечения\n
-    condition: Кортеж, где первый элемент - это имя столбца, а второй
-    элемент - значение для проверки\n
-    Значение указанного столбца или None, если не найдено
+    Retrieves the value of a specific column in the table based on a condition.
+    
+    table_name: Table name \n
+    column_to_get: The name of the column to extract\n
+    condition: A tuple where the first element is the column name and the second one is
+    the element is the value to check \n
+    The value of the specified column, or None if not found
     """
     cursor.execute(f"SELECT {column_to_get} FROM {table_name}"
                    f"WHERE {condition[0]} = ?", (condition[1],))
@@ -71,13 +71,13 @@ def get_column_value_by_name(table_name: str, column_to_get: str,
 def update_column_value(table_name: str, column_to_update: str,
                         new_value, condition: tuple) -> None:
     """
-    Обновляет значение определенного столбца в таблице на основе условия.
-
-    table_name: Имя таблицы \n
-    column_to_update: Имя столбца для обновления\n
-    new_value: Новое значение для установки\n
-    condition: Кортеж, где первый элемент - это имя столбца, а второй
-    элемент - значение для проверки
+    Updates the value of a specific column in the table based on a condition.
+    
+    table_name: Table name \n
+    column_to_update: Column name to update\n
+    new_value: New value to set\n
+    condition: Tuple where the first element is the column name and the second one is
+    the value element to check
     """
     cursor.execute(f'UPDATE {table_name} SET {column_to_update} = ?'
                    f'WHERE {condition[0]} = ?',
