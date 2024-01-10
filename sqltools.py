@@ -1,10 +1,10 @@
 import sqlite3
 
-connection = sqlite3.connect("BeaverTG.db")
+connection = sqlite3.connect("Имя БД")
 cursor = connection.cursor()
 
 
-def create_table(table_name, columns):
+def create_table(table_name: str, columns: tuple) -> None:
     """
     Создает таблицу с указанным именем и столбцами.
 
@@ -17,7 +17,7 @@ def create_table(table_name, columns):
     connection.commit()
 
 
-def add_record(table_name, values):
+def add_record(table_name: str, values: dict) -> None:
     """
     Добавляет запись в указанную таблицу.
 
@@ -32,7 +32,7 @@ def add_record(table_name, values):
     connection.commit()
 
 
-def exists_in_table(table_name, condition):
+def exists_in_table(table_name: str, condition: tuple) -> bool:
     """
     Проверяет, существует ли запись в указанной таблице на основе заданного
     условия.
@@ -48,7 +48,8 @@ def exists_in_table(table_name, condition):
     return result is not None
 
 
-def get_column_value_by_name(table_name, column_to_get, condition):
+def get_column_value_by_name(table_name: str, column_to_get: str,
+                             condition: tuple) -> None:
     """
     Получает значение определенного столбца в таблице на основе условия.
 
@@ -67,7 +68,8 @@ def get_column_value_by_name(table_name, column_to_get, condition):
         return None
 
 
-def update_column_value(table_name, column_to_update, new_value, condition):
+def update_column_value(table_name: str, column_to_update: str,
+                        new_value, condition: tuple) -> None:
     """
     Обновляет значение определенного столбца в таблице на основе условия.
 
